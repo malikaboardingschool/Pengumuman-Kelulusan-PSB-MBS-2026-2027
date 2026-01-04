@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengumuman Kelulusan 2026 - Malika Islamic Boarding School</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .snbp-blue {
+            background-color: #1a2a4e;
+        }
+        /* Warna Biru Langit untuk Header */
+        .sky-header {
+            background-color: #0ea5e9;
+        }
+        .result-card {
+            display: none;
+        }
+        .loading-spinner {
+            display: none;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: #1a2a4e;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header / Navbar -->
+    <nav class="sky-header p-4 shadow-lg">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                <!-- Logo Shape Circle -->
+                <div class="bg-white p-1 rounded-full w-14 h-14 flex items-center justify-center overflow-hidden shadow-inner">
+                    <img src="https://iili.io/FsLlXA7.png" alt="Malika Logo" class="h-10 w-auto object-contain">
+                </div>
+                <div class="text-white">
+                    <h1 class="font-bold text-lg leading-tight uppercase tracking-tight">Malika Islamic Boarding School</h1>
+                    <p class="text-xs opacity-90">Penerimaan Santri Baru Tahun Ajaran 2026/2027</p>
+                </div>
+            </div>
+            <div class="hidden md:block text-white text-right">
+                <p class="text-sm font-semibold">Portal Pengumuman Resmi</p>
+                <p class="text-xs opacity-80" id="current-date"></p>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8 max-w-4xl">
+        <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8 border-t-4 border-sky-500">
+            <div class="p-6 md:p-10">
+                <h2 class="text-2xl font-bold text-gray-800 mb-2 border-b pb-4">Cek Status Kelulusan</h2>
+                <p class="text-gray-600 mb-8 text-sm italic">*Masukkan Nama Lengkap Santri untuk melihat hasil seleksi.</p>
+
+                <form id="searchForm" class="space-y-6">
+                    <div class="flex flex-col space-y-2">
+                        <label class="block text-sm font-bold text-gray-700 uppercase">Nama Lengkap Santri</label>
+                        <input type="text" id="searchInput" placeholder="Contoh: Muhammad Abidzar" 
+                               class="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-400 focus:outline-none transition-all text-lg">
+                        <p class="text-xs text-gray-400 font-medium italic">Pastikan penulisan nama sesuai dengan data pendaftaran.</p>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                        <button type="submit" 
+                                class="sky-header text-white px-12 py-4 rounded-lg font-bold hover:bg-sky-600 transition-colors shadow-lg w-full md:w-auto text-lg uppercase tracking-wider">
+                            Lihat Hasil Seleksi
+                        </button>
+                        <div id="loading" class="loading-spinner mt-6"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Result Section -->
+        <div id="resultArea" class="result-card transform transition-all duration-500 scale-95 opacity-0">
+            <!-- Will be filled by JavaScript -->
+        </div>
+
+        <!-- FAQ / Info Section -->
+        <div class="grid grid-cols-1 gap-6 mt-8">
+            <div class="bg-blue-50 p-6 md:p-8 rounded-xl border-l-8 border-sky-600 shadow-sm">
+                <h3 class="font-bold text-sky-900 text-lg mb-4 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Pemberitahuan Penting
+                </h3>
+                <div class="text-sm text-sky-900 leading-relaxed space-y-4">
+                    <p class="font-semibold">Bagi santri yang dinyatakan lulus, berikut pemberitahuan selanjutnya:</p>
+                    
+                    <ol class="list-decimal ml-5 space-y-3">
+                        <li>
+                            <p class="font-bold">Melakukan pelunasan biaya uang masuk sebesar Rp15.000.000,- (lima belas juta rupiah) dengan ketentuan sebagai berikut:</p>
+                            <ul class="list-[lower-alpha] ml-6 mt-1 space-y-1 opacity-90">
+                                <li>Pelunasan paling lambat dilaksanakan pada <span class="font-bold underline">31 Januari 2026</span>.</li>
+                                <li>Apabila hingga batas waktu tersebut pelunasan belum dilakukan, maka hak penerimaan dinyatakan gugur dan kuota akan dialihkan kepada calon santri lain sesuai kebijakan Panitia PSB.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <p class="font-bold">Lulus psikotes, dengan estimasi pelaksanaan tes di awal bulan Februari 2026.</p>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 text-center text-sm mt-auto">
+        <p>&copy; 2026 Malika Islamic Boarding School. All Rights Reserved.</p>
+        <p class="opacity-50 mt-1">Sistem Pengumuman Seleksi Masuk Santri Baru (SPSM) v2.2</p>
+    </footer>
+
+    <script>
+        // Database Santri berdasarkan PDF Rekap 2026
+        const santriData = [
+            // SMP PUTRA
+            { id: "26001", name: "Muhammad Abidzar al-ghifari", gender: "Laki-laki", level: "SMP", school: "Sd islam alkautsar" },
+            { id: "26002", name: "Faeyza Dzakwan Adi Wicaksono", gender: "Laki-laki", level: "SMP", school: "SDIP Insan Rabbani" },
+            { id: "26003", name: "DZAKIIR EL RAFIF", gender: "Laki-laki", level: "SMP", school: "SDS PLUS HANG TUAH 2" },
+            { id: "26004", name: "Muhammad Nagib Raziq", gender: "Laki-laki", level: "SMP", school: "Min 9 jakarta Selatan" },
+            { id: "26005", name: "Muhammad Mirzha Al Ghifary", gender: "Laki-laki", level: "SMP", school: "SDIT Al Amanah 2" },
+            { id: "26006", name: "FARIZ FAREZKY", gender: "Laki-laki", level: "SMP", school: "MI Ilham 1/ SDS Muslimat" },
+            { id: "26007", name: "Muhammad Rizky", gender: "Laki-laki", level: "SMP", school: "MI. TBS Kudus" },
+            { id: "26008", name: "Muhammad Nabil Mumtaz", gender: "Laki-laki", level: "SMP", school: "SDIT Ash Shiddiq" },
+            { id: "26009", name: "ABDURRAZIQ HANAN", gender: "Laki-laki", level: "SMP", school: "MI. Attaqwa Belendung" },
+            { id: "26010", name: "Aldan Fildi Arrasyid", gender: "Laki-laki", level: "SMP", school: "SDIT Almaka kalideres" },
+            { id: "26011", name: "Axello Fathan Akbar Kristiawanto", gender: "Laki-laki", level: "SMP", school: "SDIT CORDOVA 1" },
+            { id: "26012", name: "Haikal Ali Rabani", gender: "Laki-laki", level: "SMP", school: "SDIT TUNAS HARAPAN ILAHI" },
+            { id: "26013", name: "HAZOLA QOWIYYAN AZMI", gender: "Laki-laki", level: "SMP", school: "SDI AL HASANAH CILEDUG" },
+            { id: "26014", name: "ALTAMIS SALADIN AKBAR", gender: "Laki-laki", level: "SMP", school: "SDIT ALHIKMAH PERIUK TANGERANG" },
+            { id: "26015", name: "Ikhwan Fillah Muhammad Al Fatih", gender: "Laki-laki", level: "SMP", school: "SDIT Al Biruni" },
+            { id: "26016", name: "Athallah Wisnu Farid Irawan", gender: "Laki-laki", level: "SMP", school: "SDIT ASYUKRIYAH" },
+            { id: "26017", name: "Habibie Muqit Shareza", gender: "Laki-laki", level: "SMP", school: "SDIT Global al-ijtihat" },
+            { id: "26018", name: "FAIZ AMRI ABDULLAH", gender: "Laki-laki", level: "SMP", school: "SDIT BAIDHAUL AHKAM" },
+            { id: "26019", name: "Baso Maisar Isyam Reski", gender: "Laki-laki", level: "SMP", school: "SDIT SAID NAUM JAKARTA PUSAT" },
+            { id: "26020", name: "GHAISAN AKMA FAYYADH", gender: "Laki-laki", level: "SMP", school: "SDIT ASY SYUKRIYYAH TANGERANG" },
+            { id: "26021", name: "Zulfan Azhar Raihan", gender: "Laki-laki", level: "SMP", school: "SDIT Al Ijtihad Global School" },
+            { id: "26022", name: "Muhammad Ibrahim Al Kahfi", gender: "Laki-laki", level: "SMP", school: "Kuttab Al Fatih Tangerang Kota / PKBM Morina Pinang" },
+            { id: "26023", name: "Satria Hisyam Tamami", gender: "Laki-laki", level: "SMP", school: "Cordova 3" },
+            { id: "26024", name: "Muhammad Affiq", gender: "Laki-laki", level: "SMP", school: "SD Negeri Pagedangan Udik 1" },
+            { id: "26025", name: "Habibie hafidz maulana", gender: "Laki-laki", level: "SMP", school: "sd.it al-inayah" },
+            { id: "26026", name: "MUHAMMAD NUR FAIZ", gender: "Laki-laki", level: "SMP", school: "SDN TANGERANG 4" },
+            { id: "26027", name: "Danish Danial Fadhillah", gender: "Laki-laki", level: "SMP", school: "SD Al Izzah Serang" },
+            { id: "26028", name: "Ahmad Tangguh Faizi", gender: "Laki-laki", level: "SMP", school: "SDIT Islamicity Tangerang" },
+            { id: "26029", name: "Nadief Akbari Darmawan", gender: "Laki-laki", level: "SMP", school: "Asy sukriyah" },
+            { id: "26030", name: "Keandra Rasikh Andrian", gender: "Laki-laki", level: "SMP", school: "SD YPWKS 4 Cilegon" },
+            { id: "26031", name: "Muhammad Shahrukh Khan", gender: "Laki-laki", level: "SMP", school: "SDI Kamilul Awwabin" },
+            { id: "26032", name: "Haidar Ali Jumadi", gender: "Laki-laki", level: "SMP", school: "SDIT Cordova 3" },
+            { id: "26033", name: "Gibran rifat munandar", gender: "Laki-laki", level: "SMP", school: "SDIT AL IJTIHADB" },
+            { id: "26034", name: "Aydin Ikhsan Adi Riyanto", gender: "Laki-laki", level: "SMP", school: "SD IT ALQOMAR" },
+            { id: "26035", name: "Maherza Ibnu Ardiansyah El Baraka", gender: "Laki-laki", level: "SMP", school: "Haqi school Bekasi" },
+            { id: "26036", name: "Keenan Al Khawarizmi Rusiadi", gender: "Laki-laki", level: "SMP", school: "SDI Daarul Huda" },
+            { id: "26037", name: "Irfan Fikri Estiawan", gender: "Laki-laki", level: "SMP", school: "SD IT Cordova 3" },
+            { id: "26038", name: "MUHAMMAD AZZAM AL WADUD", gender: "Laki-laki", level: "SMP", school: "SDN SUKAMANAH 02, BOGOR" },
+            { id: "26039", name: "Arkenzio Pradana", gender: "Laki-laki", level: "SMP", school: "Sdit Insan Mulia" },
+            { id: "26040", name: "Nevan dzaki raffiandra", gender: "Laki-laki", level: "SMP", school: "MI Plus as-syukriyah" },
+            { id: "26041", name: "Ahza Danish Al Wahfi", gender: "Laki-laki", level: "SMP", school: "Sdit Asy Syairiyyah" },
+            { id: "26042", name: "Cipto Azka Maulidan", gender: "Laki-laki", level: "SMP", school: "SDIT ALBIRUNI TANGERANG" },
+            { id: "26043", name: "Fachmi alfarizi zulkarnain", gender: "Laki-laki", level: "SMP", school: "SDN TAMAN CIBODAS" },
+            { id: "26044", name: "Aldebaran Nabhan Pradipta", gender: "Laki-laki", level: "SMP", school: "DAARUL HUDA" },
+            { id: "26045", name: "FIDIARKO AR RIZQI", gender: "Laki-laki", level: "SMP", school: "SDIT BANI UTSMANY" },
+            { id: "26046", name: "Muhammad anugerah al ghamie", gender: "Laki-laki", level: "SMP", school: "Sdit al-istiqomah" },
+            { id: "26047", name: "Muhammad Nadzim Adiel Mustofa", gender: "Laki-laki", level: "SMP", school: "MIT AL FUAD" },
+            { id: "26048", name: "Akmal Thufailah Kaman", gender: "Laki-laki", level: "SMP", school: "SDIT GUNUNG JATI" },
+            { id: "26049", name: "Sangga Gagas Dewanto", gender: "Laki-laki", level: "SMP", school: "SDN 01 Slipi Jakarta Barat" },
+            { id: "26050", name: "Athar Ghiffari Khairulazzam", gender: "Laki-laki", level: "SMP", school: "SDIT Al Hikmah" },
+            { id: "26051", name: "Muhammad zhafran zamzami", gender: "Laki-laki", level: "SMP", school: "SDIT Bina Bangsa" },
+            { id: "26052", name: "ZAHRAN SHABIR", gender: "Laki-laki", level: "SMP", school: "SD ISLAM ANAK KREATIF" },
+            { id: "26053", name: "MUHAMMAD SYAHDAN MURSYAHAD", gender: "Laki-laki", level: "SMP", school: "SDIT CORDOVA 1" },
+            { id: "26054", name: "Muhammad rafardhan atalla alamsyah", gender: "Laki-laki", level: "SMP", school: "SDIT ASy-syukriyyah" },
+            { id: "26055", name: "Muhammad Azzam Ramadhan", gender: "Laki-laki", level: "SMP", school: "MI Ilham 1" },
+            { id: "26056", name: "Muhammad Emir Yusuf Abqari", gender: "Laki-laki", level: "SMP", school: "Kuttab al Fatih" },
+            { id: "26057", name: "Muhammad Tsabit Qeis", gender: "Laki-laki", level: "SMP", school: "Madrasah Ibtidaiyah AL-KAMIL" },
+            { id: "26058", name: "Muhammad Rangga Al-Aufa", gender: "Laki-laki", level: "SMP", school: "MIN 5 Tangerang" },
+            { id: "26059", name: "Muhammad Al Hafidz", gender: "Laki-laki", level: "SMP", school: "Sd Sdit global school Al ijyihad" },
+            { id: "26060", name: "Zacky Haddad AlHasan", gender: "Laki-laki", level: "SMP", school: "SDIT SUTAN ALFATIH" },
+            { id: "26061", name: "Muhammad Alaric Reynandio Al hafiz", gender: "Laki-laki", level: "SMP", school: "Sdit THI" },
+            { id: "26062", name: "Rafdan Ahsan Ardian", gender: "Laki-laki", level: "SMP", school: "Permata Insani Islamic School" },
+            { id: "26063", name: "NASHEAN ALDINA PUTRA", gender: "Laki-laki", level: "SMP", school: "SDIT Daarul ulum" },
+            { id: "26064", name: "Muhamad Hamdi Zami", gender: "Laki-laki", level: "SMP", school: "MI DARUL HIDAYAH" },
+            { id: "26065", name: "Satria Bima Permana", gender: "Laki-laki", level: "SMP", school: "SD negeri panunggangan 10" },
+
+            // SMP PUTRI
+            { id: "26066", name: "Raihanah jihan syafiyyah", gender: "Perempuan", level: "SMP", school: "MIS Sabilussalam" },
+            { id: "26067", name: "DEANDRA CHUSNIA NUFAISAH ARIMBI", gender: "Perempuan", level: "SMP", school: "SDIT AT TAQWA 28" },
+            { id: "26068", name: "Nadillah Ghea Rahmawati", gender: "Perempuan", level: "SMP", school: "MIT Mathla'ul Anwar Buaran Jati" },
+            { id: "26069", name: "Aulia Izzatunnisa", gender: "Perempuan", level: "SMP", school: "SDN Poris Gaga 2" },
+            { id: "26070", name: "Hafiza Khaira Lubna", gender: "Perempuan", level: "SMP", school: "SD Daarul Qur'an Internasional" },
+            { id: "26071", name: "Dara Talitha Zahrain", gender: "Perempuan", level: "SMP", school: "SDIT Assysyukriyyah" },
+            { id: "26072", name: "Aysha adelia rahmah", gender: "Perempuan", level: "SMP", school: "MIT Matlaul Anwar" },
+            { id: "26073", name: "AVIDHENAYA KHANZA", gender: "Perempuan", level: "SMP", school: "SDIT DAUROH CURUG TANGERANG" },
+            { id: "26074", name: "Nadirah zakauha", gender: "Perempuan", level: "SMP", school: "SD IT AT-TAQWA" },
+            { id: "26075", name: "Alya Zahra Ratifa", gender: "Perempuan", level: "SMP", school: "Mip al muhajiriyah cinere" },
+            { id: "26076", name: "Aqilah Nailul Imaamah", gender: "Perempuan", level: "SMP", school: "SDIT Darul Ulum" },
+            { id: "26077", name: "Raisha Aufa Qaireen", gender: "Perempuan", level: "SMP", school: "SDIT SULTAN AL FATIH" },
+            { id: "26078", name: "Dzakira Humairah Zahra", gender: "Perempuan", level: "SMP", school: "SDS Mutiara Insani" },
+            { id: "26079", name: "Aqilah Hasna Irawan", gender: "Perempuan", level: "SMP", school: "SDI Al hasanah" },
+            { id: "26080", name: "Chatalya hafeza", gender: "Perempuan", level: "SMP", school: "SDN Karawaci baru 2" },
+            { id: "26081", name: "Khayla adibah pane", gender: "Perempuan", level: "SMP", school: "Min 7" },
+            { id: "26082", name: "Yasira Lubna Fadilah syafiqah", gender: "Perempuan", level: "SMP", school: "SDIT Bunayya" },
+            { id: "26083", name: "Nadira Shanum Azkiara", gender: "Perempuan", level: "SMP", school: "SDI Al Amanah Tangerag" },
+            { id: "26084", name: "Qisma Fauziah", gender: "Perempuan", level: "SMP", school: "SDIT DARUL HUDA" },
+            { id: "26085", name: "Bilqis Salwa Zhafira", gender: "Perempuan", level: "SMP", school: "SDIT Pluit Raya" },
+            { id: "26086", name: "RAZITA FILZA NURILLAH", gender: "Perempuan", level: "SMP", school: "MI ELSYIFA" },
+            { id: "26087", name: "Khansa Aulia Suryana", gender: "Perempuan", level: "SMP", school: "SDIT Insan Karima Cigombong" },
+            { id: "26088", name: "Aulia Syakira Aghnia Mawardi", gender: "Perempuan", level: "SMP", school: "MIN 1 TANGERANG" },
+            { id: "26089", name: "FAIDA UFAIRA", gender: "Perempuan", level: "SMP", school: "MI Plus Asy Syukriyyah" },
+            { id: "26090", name: "Naura Azima Putri", gender: "Perempuan", level: "SMP", school: "SD SAINS TAHFIZH ISLAMIC CENTER" },
+            { id: "26091", name: "Adiva Fathiyyah", gender: "Perempuan", level: "SMP", school: "Al Fityan school Tangerang" },
+            { id: "26092", name: "Davina aghna khayyirah", gender: "Perempuan", level: "SMP", school: "Mi darul hasan" },
+            { id: "26093", name: "Quinara faradiba afsheen", gender: "Perempuan", level: "SMP", school: "SDIT Al mufti" },
+            { id: "26094", name: "Bilqis Salisa Alesy", gender: "Perempuan", level: "SMP", school: "Sdit at taqwa garuda" },
+            { id: "26095", name: "Syafina Chantika Maharani", gender: "Perempuan", level: "SMP", school: "SDIT AI Fattih" },
+            { id: "26096", name: "Andini Sri Septiani", gender: "Perempuan", level: "SMP", school: "MI. NURUL HUDA" },
+            { id: "26097", name: "Syafeea Qaireen H.", gender: "Perempuan", level: "SMP", school: "SDN Pondok Jaya 01" },
+            { id: "26098", name: "Nayba febrima zalya", gender: "Perempuan", level: "SMP", school: "Sdn total persada" },
+            { id: "26099", name: "KIRANA HAMDA SYAKIRA", gender: "Perempuan", level: "SMP", school: "SDIT AL-ITQON Balaraja-Tangerang" },
+            { id: "26100", name: "Bintang Wirda Salsabila", gender: "Perempuan", level: "SMP", school: "SDIT DURROTUL UMMAH" },
+            { id: "26101", name: "Qaireen Humaira Putri", gender: "Perempuan", level: "SMP", school: "SD Nabila" },
+            { id: "26102", name: "BELVA LAURA MAHARDIKA", gender: "Perempuan", level: "SMP", school: "MI HAYATUL ISLAMIYAH CINANGKA" },
+            { id: "26103", name: "alea shannon ariesgraha arifin", gender: "Perempuan", level: "SMP", school: "SDIT Asy - Syukriyyah" },
+            { id: "26104", name: "Faiza Azra Anatasya", gender: "Perempuan", level: "SMP", school: "SDIT Asy syukriyyah tangerang" },
+            { id: "26105", name: "SITI NAILA NURHAFIFAH GUNAWAN", gender: "Perempuan", level: "SMP", school: "Pondok Pesantren Assalim" },
+            { id: "26106", name: "Khaira Nur Maulida", gender: "Perempuan", level: "SMP", school: "MI AL IHSAN" },
+            { id: "26107", name: "Adiba Turropiah", gender: "Perempuan", level: "SMP", school: "SDIT At-Taqwa Garuda" },
+            { id: "26108", name: "Keisha Aida Khumaira", gender: "Perempuan", level: "SMP", school: "Khufalul yatama" },
+            { id: "26109", name: "KAREENA SAVA AYUVI", gender: "Perempuan", level: "SMP", school: "SDIT LATAHZAN" },
+            { id: "26110", name: "Aisyah Fadhilah Ismail", gender: "Perempuan", level: "SMP", school: "SDI Daarul Huda" },
+            { id: "26111", name: "FARRAS PUTRI GHOZALI", gender: "Perempuan", level: "SMP", school: "SD IP Al Ijtihad" },
+            { id: "26112", name: "Iftina Assabiya Rafifa", gender: "Perempuan", level: "SMP", school: "MIS.AL HIKМАН 2" },
+            { id: "26113", name: "Hania Syakira Azzahra", gender: "Perempuan", level: "SMP", school: "SDI DAARUL HUDA" },
+            { id: "26114", name: "Wilona Izza Naufalyn", gender: "Perempuan", level: "SMP", school: "SDIT Al-Hikmah" },
+            { id: "26115", name: "AZIMAH LARASATI", gender: "Perempuan", level: "SMP", school: "SDIT AL MUFTI" },
+            { id: "26116", name: "Syakirah Fatihah", gender: "Perempuan", level: "SMP", school: "SD nabila" },
+            { id: "26117", name: "Athaya priskha Dzakira", gender: "Perempuan", level: "SMP", school: "SDIT islamic school pelita hati" },
+            { id: "26118", name: "Andrea Kayla Putri", gender: "Perempuan", level: "SMP", school: "Sdit al-hikmah" },
+            { id: "26119", name: "Farraas rizki al-qarny", gender: "Perempuan", level: "SMP", school: "SD Islam Al Amanah" },
+            { id: "26120", name: "Shania Faiqa Putri Fawziandra", gender: "Perempuan", level: "SMP", school: "SDIT AL HIKMAH" },
+            { id: "26121", name: "RIFSIA ANNISA", gender: "Perempuan", level: "SMP", school: "SDIT Al Amanah" },
+            { id: "26122", name: "Najwa nadira sidqia", gender: "Perempuan", level: "SMP", school: "SDIt Nurfatahilah" },
+            { id: "26123", name: "Zevanna Aulia Kafa", gender: "Perempuan", level: "SMP", school: "SDIT Al Hikmah" },
+            { id: "26124", name: "JANEETA ZHUFAIRAH HALFAN", gender: "Perempuan", level: "SMP", school: "SDIT ASYUKRIAH" },
+            { id: "26125", name: "Chelsea freya anindita Khairiniswa", gender: "Perempuan", level: "SMP", school: "SDIT AI ITQON" },
+            { id: "26126", name: "Hania Syakira", gender: "Perempuan", level: "SMP", school: "SDIT AT-TAQWA GARUDA" },
+            { id: "26127", name: "Jasmine Zuhair Kustiadijaya", gender: "Perempuan", level: "SMP", school: "SDN TAMAN SUKARYA" },
+            { id: "26128", name: "ALVIA NURUL RAHMAWATI", gender: "Perempuan", level: "SMP", school: "SDN Kotabumi 02" },
+            { id: "26129", name: "Sabiya Raqilla Rochman", gender: "Perempuan", level: "SMP", school: "MI PLUS AL MAQBUL" },
+            { id: "26130", name: "Raisya anindita ardelia", gender: "Perempuan", level: "SMP", school: "SD islam amalina" },
+
+            // SMA PUTRA
+            { id: "26131", name: "Muhamad naufal afandi", gender: "Laki-laki", level: "SMA", school: "Mts negeri 1 tangerang" },
+            { id: "26132", name: "Narendra Haykal Adhiyastha", gender: "Laki-laki", level: "SMA", school: "Mts Pembangunan Kuningan" },
+            { id: "26133", name: "FAHRI ZUFAR MAKARIM", gender: "Laki-laki", level: "SMA", school: "SMPIT LATANSA CENDEKIA" },
+            { id: "26134", name: "Sulthan Khalid Asy Syafi", gender: "Laki-laki", level: "SMA", school: "An nur Boarding school" },
+            { id: "26135", name: "Zain Assyifa Ahmad", gender: "Laki-laki", level: "SMA", school: "Smpiq al bahjah bogor" },
+            { id: "26136", name: "Akhsan Saniy Sonaka", gender: "Laki-laki", level: "SMA", school: "AQL Islamic Boarding School 2" },
+            { id: "26137", name: "Muammar Zidan Adz-dzikra", gender: "Laki-laki", level: "SMA", school: "Annur Boarding School" },
+            { id: "26138", name: "Muhamad Mudzaky Firdaus", gender: "Laki-laki", level: "SMA", school: "Mts. Negeri 1 Kab. Tangerang" },
+            { id: "26139", name: "Muhammad Khairul Azam", gender: "Laki-laki", level: "SMA", school: "SMPN 30" },
+            { id: "26140", name: "MUHAMMAD AL AYYUBY", gender: "Laki-laki", level: "SMA", school: "SMP Daaruttahsin Lebak" },
+            { id: "26141", name: "Ikram Labiq Adani", gender: "Laki-laki", level: "SMA", school: "MTs Negeri 1 Kota Tangerang" },
+            { id: "26142", name: "Brayn adams dwi march johari", gender: "Laki-laki", level: "SMA", school: "SMP Insan Pratama" },
+            { id: "26143", name: "Muhammad Hakam Ulumuddin", gender: "Laki-laki", level: "SMA", school: "SMP bina Qur'an" },
+            { id: "26144", name: "Ahmad Fathul Hady", gender: "Laki-laki", level: "SMA", school: "Almizan boarding school" },
+            { id: "26145", name: "Muhammad Ridwan saputra", gender: "Laki-laki", level: "SMA", school: "Alhikmah 2" },
+            { id: "26146", name: "Faeyza rakki chairi", gender: "Laki-laki", level: "SMA", school: "SMP Insan Pratama 1" },
+            { id: "26147", name: "Achmad Muzayid Aghni", gender: "Laki-laki", level: "SMA", school: "SMP Islam L'PINA Jakarta timur" },
+            { id: "26148", name: "Ghibran Raqila Safik", gender: "Laki-laki", level: "SMA", school: "SMP Faradira" },
+            { id: "26149", name: "Dziky Bahrul Ulum", gender: "Laki-laki", level: "SMA", school: "SMP Insan Pratama" },
+            { id: "26150", name: "husni maki", gender: "Laki-laki", level: "SMA", school: "Latansa 2" },
+            { id: "26151", name: "TB Yuki Akbar Hidayat", gender: "Laki-laki", level: "SMA", school: "SMP Malnu Banjarmasin" },
+            { id: "26152", name: "Muhammad Fathir Fauzi", gender: "Laki-laki", level: "SMA", school: "Pesantren Ruhul jadid" },
+            { id: "26153", name: "ZIDNY ZAYDAN HIDAYAT", gender: "Laki-laki", level: "SMA", school: "MTsN 3 Kota Tengerang" },
+            { id: "26154", name: "Nezha Mahmoud ahmadinejad", gender: "Laki-laki", level: "SMA", school: "SMP Islam al-fatah" },
+            { id: "26155", name: "Rayhan Al Hizam Rhamadhan", gender: "Laki-laki", level: "SMA", school: "MTs Al Hasaniyah" },
+            { id: "26156", name: "Abdullah Faqih Al-Husein", gender: "Laki-laki", level: "SMA", school: "Yapink 03 Tambun Selatan" },
+
+            // SMA PUTRI
+            { id: "26157", name: "JIHAN KHOIRUNNISA", gender: "Perempuan", level: "SMA", school: "SMA NURUL ILMI JAMBI" },
+            { id: "26158", name: "Haifa Khansaa Syuja", gender: "Perempuan", level: "SMA", school: "SMP PGRI 2 Ciledug" },
+            { id: "26159", name: "gina Alyssa Hayati ahmad", gender: "Perempuan", level: "SMA", school: "MTs sains salahudin wahid" },
+            { id: "26160", name: "AISYAH NADHRAH", gender: "Perempuan", level: "SMA", school: "PESANTREN AL KAFFA" },
+            { id: "26161", name: "Cahayati Husna Ramadhan", gender: "Perempuan", level: "SMA", school: "SMP Islam alfattah" },
+            { id: "26162", name: "Salma Sayyida", gender: "Perempuan", level: "SMA", school: "Nurul Hasna" },
+            { id: "26163", name: "Kiswah Zahrah Haniifa", gender: "Perempuan", level: "SMA", school: "Ponpes luhur Altsaqafah" },
+            { id: "26164", name: "VANIA PUTRI FITRIYAH", gender: "Perempuan", level: "SMA", school: "SMPIT CENDEKIA TAKA" },
+            { id: "26165", name: "Fakhira Dzakia Assyifany", gender: "Perempuan", level: "SMA", school: "SMPIT Ar Rahmaniyah" },
+            { id: "26166", name: "Hasna Kamila Aulia Nisa", gender: "Perempuan", level: "SMA", school: "SMPIT Insan Rabbani" },
+            { id: "26167", name: "Kireina Khairunnisa", gender: "Perempuan", level: "SMA", school: "Darul Quran Mulia" },
+            { id: "26168", name: "Nouva Rahmania sulthonah", gender: "Perempuan", level: "SMA", school: "SMPIT An-nuqthah" },
+            { id: "26169", name: "Khalissa Farah Alifia Ayu", gender: "Perempuan", level: "SMA", school: "SMPIT al ahzar syifa budi" },
+            { id: "26170", name: "Nindya fachira", gender: "Perempuan", level: "SMA", school: "Tahfiz al Basyir boarding School" },
+            { id: "26171", name: "Alifah Basyirah", gender: "Perempuan", level: "SMA", school: "Darul Quran Mulia 2" },
+            { id: "26172", name: "Amyra Hasnawati Qashidi", gender: "Perempuan", level: "SMA", school: "SMPIT AIKahfi, Bogor" },
+            { id: "26173", name: "SITI BIZMY MAULIDINA", gender: "Perempuan", level: "SMA", school: "MTS Al-Hasaniyah" }
+        ];
+
+        document.getElementById('current-date').innerText = new Date().toLocaleDateString('id-ID', {
+            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        });
+
+        const form = document.getElementById('searchForm');
+        const loading = document.getElementById('loading');
+        const resultArea = document.getElementById('resultArea');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const input = document.getElementById('searchInput').value.trim().toLowerCase();
+            
+            if (!input) return;
+
+            resultArea.style.display = 'none';
+            resultArea.classList.remove('scale-100', 'opacity-100');
+            loading.style.display = 'block';
+
+            setTimeout(() => {
+                loading.style.display = 'none';
+                
+                const found = santriData.find(s => 
+                    s.name.toLowerCase().includes(input)
+                );
+
+                renderResult(found);
+                resultArea.style.display = 'block';
+                setTimeout(() => {
+                    resultArea.classList.add('scale-100', 'opacity-100');
+                }, 50);
+            }, 1000);
+        });
+
+        function renderResult(student) {
+            if (student) {
+                resultArea.innerHTML = `
+                    <div class="bg-white border-2 border-blue-800 rounded-xl overflow-hidden shadow-2xl">
+                        <div class="bg-gradient-to-r from-blue-700 via-blue-800 to-blue-900 p-4 text-white text-center font-bold text-xl uppercase tracking-widest">
+                            HASIL SELEKSI: DINYATAKAN LULUS
+                        </div>
+                        <div class="p-6 md:p-10 flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-10">
+                            <div class="bg-gray-50 p-6 rounded-full border-2 border-dashed border-gray-200 w-40 h-40 flex items-center justify-center overflow-hidden flex-shrink-0 shadow-inner">
+                                <img src="https://iili.io/FsLlXA7.png" class="h-24 w-auto object-contain">
+                            </div>
+                            <div class="flex-grow space-y-6 w-full">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-8 border-b pb-6">
+                                    <div class="md:col-span-2">
+                                        <p class="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">Nama Santri</p>
+                                        <p class="text-2xl font-bold text-gray-800 uppercase tracking-tight">${student.name}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">Jenis Kelamin</p>
+                                        <p class="text-lg font-semibold text-gray-700">${student.gender}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">Tingkat / Jenjang</p>
+                                        <p class="text-lg font-semibold text-gray-700">${student.level} - Malika Islamic Boarding School</p>
+                                    </div>
+                                    <div class="md:col-span-2">
+                                        <p class="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">Asal Sekolah</p>
+                                        <p class="text-lg font-semibold text-gray-700">${student.school}</p>
+                                    </div>
+                                </div>
+                                <div class="bg-blue-50 p-4 rounded border border-blue-100 shadow-inner">
+                                    <p class="text-sm text-blue-900 font-semibold italic text-center">
+                                        "Selamat bergabung di keluarga besar Malika Islamic Boarding School. Silakan perhatikan instruksi pelunasan di bawah ini."
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                resultArea.innerHTML = `
+                    <div class="bg-white border-2 border-red-200 rounded-xl overflow-hidden shadow-lg">
+                        <div class="bg-red-600 p-4 text-white text-center font-bold text-xl uppercase tracking-widest">
+                            HASIL SELEKSI: BELUM LULUS
+                        </div>
+                        <div class="p-8 md:p-12 text-center">
+                            <div class="bg-red-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-red-200">
+                                <span class="text-red-600 text-4xl">✕</span>
+                            </div>
+                            <div class="max-w-2xl mx-auto space-y-4 text-gray-700 leading-relaxed">
+                                <p class="font-semibold text-lg">Terima kasih atas ikhtiar dan semangat yang telah ditunjukkan dalam seluruh rangkaian seleksi di Malika IBS.</p>
+                                <p>Setiap anak memiliki jalan belajar dan waktu terbaiknya masing-masing. Berdasarkan hasil evaluasi, pada tahun ajaran ini Ananda belum melanjutkan pendidikan di sekolah kami. Namun hal ini tidak mencerminkan nilai, potensi, maupun masa depan Ananda.</p>
+                                <p>Kami yakin Ananda memiliki kemampuan besar untuk tumbuh dan berprestasi di lingkungan pendidikan yang paling sesuai dengannya. Kami yakin ananda akan menjadi pribadi yang sholeh/sholehah dan sukses di masa depan. <span class="font-bold">Aaamiiiin.</span></p>
+                            </div>
+                            <button onclick="document.getElementById('searchInput').focus()" class="mt-8 px-8 py-3 bg-gray-100 text-gray-800 rounded-full font-bold hover:bg-gray-200 transition-all uppercase text-sm tracking-wider">
+                                Cek Nama Lain
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
